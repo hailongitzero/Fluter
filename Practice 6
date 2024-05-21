@@ -5,8 +5,10 @@ void main() {
     SupMaterial.fromNameType('roll', MaterialType.rubber),
     SupMaterial.fromNameType('block', MaterialType.plastic),
   ];
-  List<SupMaterial> searchResult  = materials.getResult('plate', materials);
-  List<SupMaterial> searchResult2 = materials.getResult2('plate', materials);
+  List<SupMaterial> searchResult  = getResult('plate', materials);
+  List<SupMaterial> searchResult2 = getResult2('plate', materials);
+  searchResult.forEach((item) => print(item.name)
+  );
   
 }
 enum MaterialType { plastic, steel, rubber, wood }
@@ -64,7 +66,9 @@ class SupMaterial extends Material {
           canMakeHouse: type == MaterialType.steel || type == MaterialType.wood ? true : false,
         );
 
-  List<SupMaterial> getResult(String searchValue, List<SupMaterial> inputList) {
+  
+}
+List<SupMaterial> getResult(String searchValue, List<SupMaterial> inputList) {
     return inputList.where((material) => material.name.toLowerCase().contains(searchValue.toLowerCase())).toList();
   }
 
@@ -74,5 +78,3 @@ class SupMaterial extends Material {
             material.name.toLowerCase().contains(searchValue.toLowerCase()) && material.canMakeHouse == true)
         .toList();
   }
-}
-
